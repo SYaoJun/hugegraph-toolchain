@@ -58,7 +58,9 @@ public final class DateUtil {
     }
 
     public static String now(String df) {
-        return getDateFormat(df).format(new Date());
+        SafeDateFormat dateFormat = getDateFormat(df);
+        dateFormat.setTimeZone(Constants.TIME_ZONE);
+        return dateFormat.format(new Date());
     }
 
     public static boolean checkTimeZone(String timeZone) {

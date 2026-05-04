@@ -25,6 +25,15 @@ import org.apache.hugegraph.testutil.Assert;
 public class DateUtilTest {
 
     @Test
+    public void testNowUsesDefaultTimeZone() {
+        String pattern = "Z";
+
+        DateUtil.parse("1970-01-01 +0000", "yyyy-MM-dd Z", "GMT");
+
+        Assert.assertEquals("+0800", DateUtil.now(pattern));
+    }
+
+    @Test
     public void testCheckTimeZone() {
         Assert.assertTrue(DateUtil.checkTimeZone("JST"));
         Assert.assertTrue(DateUtil.checkTimeZone("UTC"));
